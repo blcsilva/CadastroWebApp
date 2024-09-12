@@ -1,0 +1,70 @@
+@model IEnumerable<WebApp.Models.Pessoa>
+
+    @{
+    ViewData["Title"] = "Lista de Pessoas";
+    }
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewData["Title"]</title>
+        <link rel="stylesheet" href="~/css/site.css" />
+        <script src="~/js/site.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>@ViewData["Title"]</h1>
+        </header>
+
+        <main role="main" class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Sexo</th>
+                        <th>RG</th>
+                        <th>CPF</th>
+                        <th>Cidade</th>
+                        <th>CEP</th>
+                        <th>Data de Nascimento</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Estado</th>
+                        <th>País</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pessoa in Model)
+                    {
+                    <tr>
+                        <td>@pessoa.Nome</td>
+                        <td>@pessoa.Idade</td>
+                        <td>@pessoa.Sexo</td>
+                        <td>@pessoa.RG</td>
+                        <td>@pessoa.CPF</td>
+                        <td>@pessoa.Cidade</td>
+                        <td>@pessoa.CEP</td>
+                        <td>@pessoa.DataNascimento.ToString("dd/MM/yyyy")</td>
+                        <td>@pessoa.Email</td>
+                        <td>@pessoa.Telefone</td>
+                        <td>@pessoa.Estado</td>
+                        <td>@pessoa.Pais</td>
+                        <td>
+                            <a href="@Url.Action(" Edit", new { id=pessoa.Id })">Editar</a> |
+                            <a href="@Url.Action(" Delete", new { id=pessoa.Id })">Excluir</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </main>
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET Core</p>
+        </footer>
+    </body>
+</html>
